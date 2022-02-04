@@ -4,13 +4,16 @@ on:
   workflow_dispatch:
     inputs:
       rname:
-        description: "Releases Name"
+        description: "Release Name"
         required: true
         type: string
       tags:
-        description: 'Test scenario tags'
+        description: 'Tag Name'
         required: true
         type: string
+  create:
+    tags:
+      - ${{ github.event.inputs.tags }}
 
 env:
   BUILD_OUTPUT: 'build'
