@@ -36,6 +36,7 @@ jobs:
       env:
           prerelease: true
           bodyFile: log.md
-          name: releases
+          tag: "releases"
+          name: "releases"
           artifacts: "${{ env.BUILD_OUTPUT }}/*"
           token: ${{ secrets.GITHUB_TOKEN }}
