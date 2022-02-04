@@ -11,9 +11,6 @@ on:
         description: 'Tag Name'
         required: true
         type: string
-  create:
-    tags:
-      - v*
 
 env:
   BUILD_OUTPUT: 'build'
@@ -45,7 +42,7 @@ jobs:
       run: git log -"1" --format="- %H %s" | sed '/^$/d' >> log.md
 
     - name: Release to GitHub
-      uses: ncipollo/release-action@v1
+      uses: ncipollo/release-action@v1.8.6
       env:
           prerelease: true
           bodyFile: log.md
