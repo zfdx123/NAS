@@ -8,6 +8,10 @@
 >本项目目前没有前端页面（期待大佬完成）</br>
 >本人刚接触go语言代码质量可怜，欢迎大佬指正</br>
 
+##说明
+>请自行创建file文件夹编写配置文件，file文件夹与二进制文件同目录，配置文件名为conf.ini </br>
+> Dome > https://github.com/zfdx123/NAS/tree/main/file
+
 ##感谢以下开源库:</br>
 >`github.com/Unknwon/goconfig v1.0.0`</br>
 >`github.com/dgrijalva/jwt-go v3.2.0+incompatible`</br>
