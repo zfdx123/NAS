@@ -1,0 +1,41 @@
+name: Go
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  BUILD_OUTPUT: 'build'
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+    
+    - name: mod
+      run: go mod tidy
+
+    - name: Build Linux
+      run: CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -o ./build/NAS ./src/main.go
+
+    - name: Build Windows
+      run: CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -v -o ./build/NAS.exe ./src/main.go
+
+    - name: Log
+      run: git log -"1" --format="- %H %s" | sed '/^$/d' >> log.md
+
+    - name: Release to GitHub
+      uses: ncipollo/release-action@v1
+      env:
+          prerelease: true
+          bodyFile: log.md
+          name: releases
+          artifacts: "${{ env.BUILD_OUTPUT }}/*"
+          token: ${{ secrets.GITHUB_TOKEN }}
