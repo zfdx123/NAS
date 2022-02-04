@@ -44,7 +44,6 @@ jobs:
     - name: Release to GitHub
       uses: ncipollo/release-action@v1.8.6
       with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           prerelease: true
           bodyFile: log.md
           tag: "${{ github.event.inputs.tags }}"
