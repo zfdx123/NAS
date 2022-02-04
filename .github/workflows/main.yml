@@ -3,12 +3,14 @@ name: Go
 on:
   workflow_dispatch:
     inputs:
+      rname:
+        description: "Releases Name"
+        required: true
+        type: string
       tags:
         description: 'Test scenario tags'
         required: true
         type: string
-  push:
-    branches: [ main ]
 
 env:
   BUILD_OUTPUT: 'build'
@@ -45,6 +47,6 @@ jobs:
           prerelease: true
           bodyFile: log.md
           tag: "${{ github.event.inputs.tags }}"
-          name: "releases"
+          name: "${{ github.event.inputs.rname }}"
           artifacts: "${{ env.BUILD_OUTPUT }}/*"
           token: ${{ secrets.GITHUB_TOKEN }}
