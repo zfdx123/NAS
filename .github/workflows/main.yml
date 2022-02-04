@@ -1,6 +1,11 @@
 name: Go
 
 on:
+  workflow_dispatch:
+    inputs:
+      DEPLOY_VERSION:
+        description: 'Tag Version (0.0.1)'
+        required: true
   push:
     branches: [ main ]
 
@@ -13,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+          fetch-depth: 0
 
     - name: Set up Go
       uses: actions/setup-go@v2
